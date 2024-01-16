@@ -1,0 +1,28 @@
+<!-- post-add.component.html -->
+<div class="post-add-container">
+    <h2>{{ isEdit ? 'Edit Post' : 'Add Post' }}</h2>
+    <form (submit)="onSubmit()">
+      <label for="title">Title:</label>
+      <input type="text" id="title" [(ngModel)]="newPost.title" required [ngModelOptions]="{standalone: true}">
+  
+      <label for="body">Body:</label>
+      <textarea id="body" [(ngModel)]="newPost.body" required [ngModelOptions]="{standalone: true}"></textarea>
+  
+      <label for="tags">Tags:</label>
+      <select id="tags" [(ngModel)]="newPost.tags" multiple [ngModelOptions]="{standalone: true}">
+        <option value="tag1">Tag 1</option>
+        <option value="tag2">Tag 2</option>
+        <!-- Add more tag options as needed -->
+      </select>
+  
+      <label for="status">Status:</label>
+      <select id="status" [(ngModel)]="newPost.active" [ngModelOptions]="{standalone: true}">
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+      </select>
+  
+      <button type="submit">{{ isEdit ? 'Save Changes' : 'Add Post' }}</button>
+      <!-- <button *ngIf="isEdit" type="button" (click)="resetForm()">Reset</button> -->
+    </form>
+  </div>
+  

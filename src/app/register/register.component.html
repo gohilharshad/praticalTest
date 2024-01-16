@@ -1,0 +1,55 @@
+<div>
+  <h2>Register</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <label for="username">Username:</label>
+    <input type="text" id="username" formControlName="username">
+    <div *ngIf="registerForm.get('username')?.hasError('required') && registerForm.get('username')?.touched">Username is
+      required</div>
+    <div *ngIf="registerForm.get('username')?.hasError('minlength') && registerForm.get('username')?.touched">Username
+      must be at least 3 characters</div>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email">
+    <div *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched">Email is required
+    </div>
+    <div *ngIf="registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched">Invalid email format
+    </div>
+
+    <label for="mobile">Mobile Number:</label>
+    <input type="tel" id="mobile" formControlName="mobile">
+    <div
+      *ngIf="(registerForm.get('mobile')?.hasError('required') || registerForm.get('mobile')?.hasError('pattern')) && registerForm.get('mobile')?.touched">
+      Invalid mobile number</div>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" formControlName="password">
+    <div *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched">Password is
+      required</div>
+    <div *ngIf="registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.touched">Password
+      must be at least 6 characters</div>
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" formControlName="confirmPassword">
+    <div
+      *ngIf="registerForm.get('confirmPassword')?.hasError('required') && registerForm.get('confirmPassword')?.touched">
+      Confirm Password is required</div>
+    <div
+      *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched">
+      Passwords do not match</div>
+
+    <label for="gender">Gender:</label>
+    <select id="gender" formControlName="gender">
+      <option value="" disabled>Select Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select>
+    <div *ngIf="registerForm.get('gender')?.hasError('required') && registerForm.get('gender')?.touched">Gender is
+      required</div>
+
+
+      <button type="submit" [disabled]="registerForm.invalid">Register</button>
+      <div style="margin-top: 10px;"> Already have an account? <a routerLink="/login">Login</a>
+      </div>
+  </form>
+</div>

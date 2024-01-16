@@ -1,0 +1,15 @@
+<!-- app-navbar.component.html -->
+<nav>
+    <div>
+      <a routerLink="/dashboard">Dashboard</a>
+    </div>
+    <div *ngIf="!isLoggedIn">
+      <a routerLink="/login">Login</a>
+    </div>
+    <div *ngIf="isLoggedIn">
+      <a routerLink="/view-post">Posts</a>
+      <a routerLink="/add-post">Add Post</a>
+      <a (click)="logout()">Logout</a>
+    </div>
+  </nav>
+  

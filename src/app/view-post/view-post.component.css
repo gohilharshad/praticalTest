@@ -1,0 +1,28 @@
+/* post-list.component.css */
+
+h2 {
+    color: #333;
+  }
+  
+  .post-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .post-table th, .post-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .post-table th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Styles for the "No posts available" message */
+  p.no-posts {
+    color: #777;
+    font-style: italic;
+  }
+  
