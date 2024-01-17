@@ -56,16 +56,19 @@ export class PostServiceService {
   getPost(postId: number): Observable<Post | undefined> {
     console.log('postId: ', postId);
     const postsString = localStorage.getItem(this.localStorageKey);
+    console.log(postsString);
+    
     const posts: Post[] = postsString ? JSON.parse(postsString) : [];
-    const post = posts.find((p: any) => p.id === postId);
-  
-    // Check if the post is found and handle the "active" property
-    if (post) {
-      post.active = post.active == true; 
-      return of(post);
-    } else {
-      return of(undefined);
+    console.log(">>>>>>",posts);
+    let data: Post | undefined;
+    for (let i = 0; i < posts.length; i++) {
+      const element = posts[i];
+      if(element.id == postId) {
+        data = element;
+        break
+      }
     }
+    return of(data);
   }
 
   updatePost(post: Post): Observable<Post | undefined> {

@@ -23,10 +23,11 @@ export class PostAddComponent implements OnInit{
         
         this.isEdit = params.editMode == "true";
         this.postId = params.postId;
+        console.log("this.isEdit",this.isEdit);
+        console.log("this.postId",this.postId);
         
 
         if (this.isEdit) {
-          console.log("?>>>>>>>>");
           this.postService.getPost(this.postId).subscribe((post:any) => {
             console.log('post: ', post);
             if (post) {
@@ -44,7 +45,7 @@ export class PostAddComponent implements OnInit{
     if (this.isEdit) {
       this.postService.updatePost(this.newPost).subscribe(() => {
         this.router.navigate(['/dashboard']);
-        this.postForm.resetForm();
+        // this.postForm.resetForm();
       });
     } else {
       this.postService.addPost(this.newPost).subscribe(() => {

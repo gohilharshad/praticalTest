@@ -1,31 +1,30 @@
 <!-- post-list.component.html -->
 <div *ngIf="posts.length > 0; else noPosts">
-    <h2>Posts List</h2>
-    <table class="post-table">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Body</th>
-          <th>Tags</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let post of posts">
-          <td>{{ post.title }}</td>
-          <td>{{ post.body }}</td>
-          <td>{{ post.tags.join(', ') }}</td>
-          <td>{{ post.active ? 'Active' : 'Inactive' }}</td>
-          <td>
-            <button (click)="editPost(post)">Edit</button>
-            <button (click)="deletePost(post)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <ng-template #noPosts>
-    <p class="no-posts">No posts available.</p>
-  </ng-template>
-  
+  <h2>Posts List</h2>
+  <table class="post-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Tags</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of posts">
+        <td>{{ post.title }}</td>
+        <td>{{ post.body }}</td>
+        <td>{{ post.tags.join(', ') }}</td>
+        <td>{{ post.active ? 'Active' : 'Inactive' }}</td>
+        <td>
+          <button (click)="editPost(post)">Edit</button>
+          <button (click)="deletePost(post)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noPosts>
+  <p class="no-posts">No posts available.</p>
+</ng-template>
