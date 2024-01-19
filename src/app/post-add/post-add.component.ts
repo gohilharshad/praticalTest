@@ -7,45 +7,39 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-post-add',
   templateUrl: './post-add.component.html',
-  styleUrls: ['./post-add.component.css']
+  styleUrls: ['./post-add.component.css'],
 })
-export class PostAddComponent implements OnInit{
-  @ViewChild('postForm') postForm!: NgForm; 
+export class PostAddComponent implements OnInit {
+  @ViewChild('postForm') postForm!: NgForm;
 
   newPost: Post = { id: 0, title: '', body: '', tags: [], active: true };
-  constructor(private postService: PostServiceService, private router: Router,  private route: ActivatedRoute,
-    ) {}
-  isEdit:any;
-  
-  postId:any
-    ngOnInit() {
-      this.route.queryParams.subscribe((params:any) => {
-        
-        this.isEdit = params.editMode == "true";
-        this.postId = params.postId;
-        console.log("this.isEdit",this.isEdit);
-        console.log("this.postId",this.postId);
-        
+  constructor(
+    private postService: PostServiceService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+  isEdit: any;
 
-        if (this.isEdit) {
-          this.postService.getPost(this.postId).subscribe((post:any) => {
-            console.log('post: ', post);
-            if (post) {
-              this.newPost = post;
-              console.log('this.newPost: ', this.newPost);
-            }
-          });
+  postId: any;
+  ngOnInit() {
+    this.route.queryParams.subscribe((params: any) => {
+      this.isEdit = params.editMode == 'true';
+      this.postId = params.postId;
+
+      if (this.isEdit) {
+        this.postService.getPost(this.postId).subscribe((post: any) => {
+          if (post) {
+            this.newPost = post;
+          }
+        });
       }
-      });
-    }
-  
-
+    });
+  }
 
   onSubmit() {
     if (this.isEdit) {
       this.postService.updatePost(this.newPost).subscribe(() => {
         this.router.navigate(['/dashboard']);
-        // this.postForm.resetForm();
       });
     } else {
       this.postService.addPost(this.newPost).subscribe(() => {
